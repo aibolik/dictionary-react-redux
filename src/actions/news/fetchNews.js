@@ -10,7 +10,7 @@ module.exports = (category) => {
       headers: {
         "Content-Type": "application/json",
         "News-Token": "d3b79b3e8c0405e8055dc9f7396e63b8dba38930"
-      }
+      } 
     })
       .then(req => {
         return req.json();

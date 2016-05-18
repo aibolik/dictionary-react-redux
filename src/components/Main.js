@@ -46,13 +46,12 @@ class AppComponent extends React.Component {
   }
 
   render() {
-    let {actions, news, selectedNews} = this.props;
+    let {actions, news} = this.props;
     const styles = {
       root: {
         display: 'flex',
         flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        display: selectedNews.id ? 'none': 'block'
+        justifyContent: 'space-around'
       },
       gridList: {
         width: 450,
@@ -73,9 +72,7 @@ class AppComponent extends React.Component {
           iconElementLeft={
             <IconButton
               touch={true}
-              onTouchTap={actions.deselectNews.bind(this)}
             >
-              {selectedNews.id ? <ArrowBack/> : <Dashboard/>}
             </IconButton>
           }
           iconElementRight={
@@ -120,12 +117,6 @@ class AppComponent extends React.Component {
               <RaisedButton label="Action2"/>
             </CardActions>
           </Card>
-        </div>
-        <div style={{
-          display: selectedNews.id ? 'block': 'none',
-        }} className={"news-content"}>
-          <h3>{ selectedNews.title }</h3>
-          <div dangerouslySetInnerHTML={{__html: selectedNews.fulltext}} />
         </div>
         <div style={styles.root}>
           <GridList

@@ -15,7 +15,12 @@ import Main from '../components/Main';
 class App extends Component {
   render() {
     const {actions, news, selectedNews} = this.props;
-    return <Main actions={actions} news={news} selectedNews={selectedNews}/>;
+    return (
+      <Main
+        actions={actions}
+        news={news}
+        selectedNews={selectedNews}/>
+    );
   }
 }
 /* Populated by react-webpack-redux:reducer
