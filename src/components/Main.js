@@ -102,21 +102,6 @@ class AppComponent extends React.Component {
             icon={<ActionFlightTakeoff />}
             style={styles.button}
           />
-          <Card initiallyExpanded={true}>
-            <CardHeader
-              title="Apple"
-              subtitle="en,ru,kk"
-              actAsExpander={true}
-              showExpandableButton={true}>
-            </CardHeader>
-            <CardText expandable={true}>
-              An apple is a fruit that grows on trees
-            </CardText>
-            <CardActions expandable={true}>
-              <RaisedButton label="Action1"/>
-              <RaisedButton label="Action2"/>
-            </CardActions>
-          </Card>
         </div>
         <div style={styles.root}>
           <GridList
@@ -126,17 +111,21 @@ class AppComponent extends React.Component {
             style={styles.gridList}
           >
             {news.items.map(news_item => (
-              <GridTile
-                key={news_item.id}
-                title={news_item.title}
-                subtitle={moment(news_item.pub_date).fromNow()}
-                // actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
-                // actionPosition="right"
-                titlePosition="bottom"
-                // titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-              >
-                <img src={news_item.image_url} onClick={actions.selectNews.bind(this, news_item)}/>
-              </GridTile>
+              <Card initiallyExpanded={true}>
+                <CardHeader
+                  id={news_item.id}
+                  title={news_item.title}
+                  subtitle="en,ru,kk"
+                  actAsExpander={true}
+                  showExpandableButton={true}>
+                </CardHeader>
+                <CardText expandable={true}>
+                  An apple is a fruit that grows on trees
+                </CardText>
+                <CardActions expandable={true}>
+                  <RaisedButton label="More"/>
+                </CardActions>
+              </Card>
             ))}
           </GridList>
         </div>
