@@ -15,8 +15,20 @@ import ArrowBack from 'material-ui/lib/svg-icons/navigation/arrow-back';
 import Dashboard from 'material-ui/lib/svg-icons/action/dashboard';
 import RefreshIcon from 'material-ui/lib/svg-icons/navigation/refresh';
 import RefreshIndicator from 'material-ui/lib/refresh-indicator';
+
+
+import ActionFlightTakeoff from 'material-ui/lib/svg-icons/action/flight-takeoff';
 import TextField from 'material-ui/lib/TextField';
 import RaisedButton from 'material-ui/lib/raised-button';
+const Card = require('material-ui/lib/card/card');
+const CardActions = require('material-ui/lib/card/card-actions');
+const CardExpandable = require('material-ui/lib/card/card-expandable');
+const CardHeader = require('material-ui/lib/card/card-header');
+const CardMedia = require('material-ui/lib/card/card-media');
+const CardText = require('material-ui/lib/card/card-text');
+const CardTitle = require('material-ui/lib/card/card-title');
+
+
 import moment from 'moment';
 
 class AppComponent extends React.Component {
@@ -88,10 +100,26 @@ class AppComponent extends React.Component {
             hintText="Search Word"
           />
           <RaisedButton
-          label="Label before"
-          labelPosition="before"
-          primary={true}
+            label="Search"
+            primary={true}
+            icon={<ActionFlightTakeoff />}
+            style={styles.button}
           />
+          <Card initiallyExpanded={true}>
+            <CardHeader
+              title="Apple"
+              subtitle="en,ru,kk"
+              actAsExpander={true}
+              showExpandableButton={true}>
+            </CardHeader>
+            <CardText expandable={true}>
+              An apple is a fruit that grows on trees
+            </CardText>
+            <CardActions expandable={true}>
+              <RaisedButton label="Action1"/>
+              <RaisedButton label="Action2"/>
+            </CardActions>
+          </Card>
         </div>
         <div style={{
           display: selectedNews.id ? 'block': 'none',
