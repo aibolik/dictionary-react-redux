@@ -9,7 +9,6 @@ import IconMenu from 'material-ui/lib/menus/icon-menu';
 import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
 import StarBorder from 'material-ui/lib/svg-icons/toggle/star-border';
 import ArrowBack from 'material-ui/lib/svg-icons/navigation/arrow-back';
 import Dashboard from 'material-ui/lib/svg-icons/action/dashboard';
@@ -46,12 +45,13 @@ class AppComponent extends React.Component {
   }
 
   render() {
-    let {actions, news} = this.props;
+    let {actions, news, selectedNews} = this.props;
     const styles = {
       root: {
         display: 'flex',
         flexWrap: 'wrap',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        display: selectedNews.id ? 'none': 'block'
       },
       gridList: {
         width: 450,
@@ -60,6 +60,10 @@ class AppComponent extends React.Component {
       },
       button: {
         margin: 12,
+      },
+      appBarStyle: {
+        color: 'black',
+        backgroundColor: '#9C27B0',
       }
     };
 
@@ -68,9 +72,13 @@ class AppComponent extends React.Component {
 
         <AppBar
           title="Dictionary"
+          style={styles.appBarStyle}
           iconElementLeft={
             <IconButton
+              touch={true}
+              onTouchTap={actions.deselectNews.bind(this)}
             >
+              {selectedNews.id ? <ArrowBack/> : <Dashboard/>}
             </IconButton>
           }
           iconElementRight={
@@ -90,6 +98,13 @@ class AppComponent extends React.Component {
             </IconButton>
           }
         />
+        <div style={{
+          display: selectedNews.id ? 'block': 'none',
+        }} className={"news-content"}>
+          <h3>{ selectedNews.title }</h3>
+          <h4>{ selectedNews.definition }</h4>
+          <div dangerouslySetInnerHTML={{__html: selectedNews.fulltext}} />
+        </div>
         <div>
           <TextField
             hintText="Search Word"
@@ -120,7 +135,7 @@ class AppComponent extends React.Component {
                   {news_item.definition}
                 </CardText>
                 <CardActions expandable={true}>
-                  <RaisedButton label="More"/>
+                  <RaisedButton label="More"  onClick={actions.selectNews.bind(this, news_item)}/>
                 </CardActions>
               </Card>
             ))}
