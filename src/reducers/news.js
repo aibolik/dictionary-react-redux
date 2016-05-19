@@ -15,7 +15,7 @@ module.exports = function(state = initialState, action) {
       return {...state, isFetching: true};
     } break;
     case 'RECEIVE_NEWS': {
-      return {...state, isFetching: false, items: action.response.data};
+      return {...state, isFetching: false, items: action.response};
     } break;
     default: {
       /* Return original state if no actions were consumed. */

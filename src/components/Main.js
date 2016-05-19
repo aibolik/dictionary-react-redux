@@ -57,7 +57,6 @@ class AppComponent extends React.Component {
         width: 450,
         height: '100%',
         overflowY: 'auto',
-        // marginBottom: 24,
       },
       button: {
         margin: 12,
@@ -71,7 +70,6 @@ class AppComponent extends React.Component {
           title="Dictionary"
           iconElementLeft={
             <IconButton
-              touch={true}
             >
             </IconButton>
           }
@@ -106,7 +104,6 @@ class AppComponent extends React.Component {
         <div style={styles.root}>
           <GridList
             cols={1}
-            cellHeight={200}
             padding={1}
             style={styles.gridList}
           >
@@ -120,7 +117,7 @@ class AppComponent extends React.Component {
                   showExpandableButton={true}>
                 </CardHeader>
                 <CardText expandable={true}>
-                  An apple is a fruit that grows on trees
+                  {news_item.definition}
                 </CardText>
                 <CardActions expandable={true}>
                   <RaisedButton label="More"/>
